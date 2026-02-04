@@ -30,3 +30,21 @@ weather_data = {
     { temperature: 60, conditions: "Rainy", precipitation: 0.9 }
   ]
 }
+
+# Step 1: Print current weather
+puts "Currently it is #{weather_data[:current][:temperature]} degrees and #{weather_data[:current][:conditions]}."
+
+# Step 2: Print the header
+puts "Forecast for the next 7 days:"
+
+# Step 3: Loop through forecast
+weather_data[:forecast].each do |day|
+  output = "- #{day[:temperature]} degrees and #{day[:conditions]}"
+
+  if day[:precipitation] > 0.5 && day[:conditions] != "Rainy"
+    rain_percent = (day[:precipitation] * 100).to_i
+    output = output + " with a #{rain_percent}% chance of rain"
+  end
+
+  puts output
+end
